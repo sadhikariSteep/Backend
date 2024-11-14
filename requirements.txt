@@ -1,0 +1,27 @@
+fastapi
+fastapi[all]
+uvicorn
+sqlalchemy
+psycopg2-binary
+passlib
+pydantic
+python-dotenv
+email_validator
+pydantic[email]
+python-jose[cryptography]
+passlib[bcrypt]
+docx2txt # to read docx 
+pypdf
+langchain_ollama
+#---------------
+langchain-core
+langchain-community
+sentence_transformers
+langchain-huggingface
+#faiss-gpu
+requests==2.27.1
+transformers
+#python-certifi-win32 
+#pip_system_certs ## this is for MaxRetryError("HTTPSConnectionPool) type error
+psycopg2-binary
+#certifi

@@ -1,0 +1,59 @@
+version: '3.9'
+services:
+  db:
+    image: postgres #:17.0-alpine3.20
+    container_name: chatbot_postgres
+    restart: always
+    ports:
+      - 5432:5432
+    env_file:
+      - ./.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - chatbot_network
+
+  fastapi:
+    build: . #from local Dockerfile
+    container_name: fastapi-container
+    restart: always
+    #command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/BACKEND
+    depends_on:
+      - db
+      - ollama
+    env_file:
+      - ./.env  # Read environment variables from .env file
+    networks:
+      - chatbot_network
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama-container
+    restart: always
+    entrypoint: ['/bin/bash', '/pull-model.sh']
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    ports:
+      - 11431:11434
+    volumes:
+      - ollama_model:/root/.ollama
+      - ./pull-model.sh:/pull-model.sh  # Mount only the script
+    networks:
+      - chatbot_network
+
+volumes:
+  postgres_data:
+  ollama_model:
+
+networks:
+  chatbot_network:
+    driver: bridge

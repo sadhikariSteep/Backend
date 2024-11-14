@@ -1,0 +1,27 @@
+# Ignore the .env file (sensitive data)
+#.env
+
+# Ignore the node_modules folder (if applicable, for frontend apps)
+node_modules
+
+# Ignore Python cache files
+__pycache__
+*.pyc
+*.pyo
+
+# Ignore IDE-specific files (e.g., VS Code, PyCharm)
+.vscode
+.idea
+
+# Ignore logs
+*.log
+
+# Ignore Docker Compose configuration and Dockerfile if needed
+docker-compose.override.yml
+Dockerfile.dev
+
+# Ignore local development files (if applicable)
+*.local
+
+# Ignore database files
+*.sqlite

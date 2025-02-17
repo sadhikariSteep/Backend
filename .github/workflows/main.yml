@@ -25,7 +25,7 @@ jobs:
           docker compose up -d --build
           docker ps -a
           docker tag fastapi ${{ secrets.DOCKER_USERNAME }}/fastapi:${{ github.sha }}
-          docker tag db:latest ${{ secrets.DOCKER_USERNAME }}/db:${{ github.sha }}        # Tag db
+          docker tag db ${{ secrets.DOCKER_USERNAME }}/db:${{ github.sha }}        # Tag db
           docker tag ollama ${{ secrets.DOCKER_USERNAME }}/ollama:${{ github.sha }}  # Tag ollama
 
       - name: Logging into Docker Hub

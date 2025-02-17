@@ -1,5 +1,6 @@
 fastapi
 fastapi[all]
+fastapi-proxiedheadersmiddleware
 uvicorn
 sqlalchemy
 psycopg2-binary
@@ -12,7 +13,12 @@ python-jose[cryptography]
 passlib[bcrypt]
 docx2txt # to read docx 
 pypdf
+PyPDF2
+chromadb 
+pymupdf
 langchain_ollama
+python3-saml
+fastapi-sso
 #---------------
 langchain-core
 langchain-community
@@ -21,7 +27,20 @@ langchain-huggingface
 #faiss-gpu
 requests==2.27.1
 transformers
+watchdog
 #python-certifi-win32 
 #pip_system_certs ## this is for MaxRetryError("HTTPSConnectionPool) type error
 psycopg2-binary
 #certifi
+markdown
+beautifulsoup4
+rank_bm25
+deepeval
+#lammaindex-------------
+spacy
+#llama-index-llms-ollama
+#llama-index-embeddings-langchain
+#llama-index-embeddings-ollama
+#llama-index-vector-stores-faiss
+#llama-index
+#unstructured[docx,pptx]

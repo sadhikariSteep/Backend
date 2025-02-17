@@ -1,6 +1,7 @@
 # app/schemas/chat.py
 from pydantic import BaseModel
 from datetime import datetime
+from typing import List, Literal
 
 class ChatCreate(BaseModel):
     user_id: int
@@ -11,20 +12,19 @@ class ChatCreate(BaseModel):
     class Config:
         from_attributes=True
 
-class ChatResponse(BaseModel):
-    id: int
-    user_id: int
-    session_id: str
-    question: str
-    response: str
-    timestamp: datetime
-
-    class Config:
-        from_attributes=True
-
         
 class ChatRequest(BaseModel):
     question: str
+    selectedModel: str
     
     class Config:
         from_attributes=True
+
+
+class ContentBlock(BaseModel):
+    type: Literal["text", "think", "botStatusMsg"]
+    content: str
+
+class ChatResponse(BaseModel):
+    response: List[ContentBlock]
+    # duration: float

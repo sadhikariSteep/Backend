@@ -32,6 +32,6 @@ jobs:
 
       - name: Push to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/fastapi:${{ github.sha }} #push fastapi
+          docker push ${{ secrets.DOCKER_USERNAME }}/fastapi:${{ github.sha }} #push fastapi image
           docker push ${{ secrets.DOCKER_USERNAME }}/db:${{ github.sha }}          # Push db
           docker push ${{ secrets.DOCKER_USERNAME }}/ollama:${{ github.sha }}    # Push ollama

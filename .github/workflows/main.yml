@@ -15,7 +15,7 @@ jobs:
 
       - name: Create .env file
         run: | 
-          echo "${{ secrets.ENV_FILE }}" > .env
+          echo "${{ secrets.ENV_FILE_BASE64 }}" | base64 --decode > .env
       - name: Build and tag Docker images using docker-compose
         run: |
           docker compose up -d --build

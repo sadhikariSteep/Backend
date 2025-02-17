@@ -1,8 +1,7 @@
-version: '3.9'
 services:
   db:
     image: postgres #:17.0-alpine3.20
-    container_name: chatbot_postgres
+    container_name: postgres-container
     restart: always
     ports:
       - 5432:5432
@@ -17,11 +16,13 @@ services:
     build: . #from local Dockerfile
     container_name: fastapi-container
     restart: always
+    runtime: nvidia
     #command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     ports:
       - 8000:8000
     volumes:
-      - .:/BACKEND
+      - .:/backend
+      - /mnt/:/backend/app/files/
     depends_on:
       - db
       - ollama
@@ -29,18 +30,31 @@ services:
       - ./.env  # Read environment variables from .env file
     networks:
       - chatbot_network
+  # apache:
+  #   image: httpd:latest
+  #   container_name: apache-container
+  #   restart: always
+  #   ports:
+  #     - 443:443
+  #   volumes:
+  #     - /etc/apache2/sites-available/bnkichat.conf:/usr/local/apache2/conf/httpd.conf # Mapping host's configuration to container's config path
+  #   depends_on:
+  #     - fastapi
+  #   networks:
+  #     - chatbot_network
+
 
   ollama:
     image: ollama/ollama
     container_name: ollama-container
     restart: always
-    entrypoint: ['/bin/bash', '/pull-model.sh']
+    entrypoint: ['/bin/bash', './pull-model.sh']
     deploy:
       resources:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              count: all
               capabilities: [gpu]
     ports:
       - 11431:11434
@@ -56,4 +70,5 @@ volumes:
 
 networks:
   chatbot_network:
-    driver: bridge
+    #driver: bridge
+    external: true

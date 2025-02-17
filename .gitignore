@@ -1,5 +1,11 @@
 __pycache__
 .vscode
 .env
-tesst.py
 test.py
+db-setup.sh
+dependencies.py
+admin.py
+data*
+Notebooks*
+.mount.swp
+core

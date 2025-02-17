@@ -15,7 +15,7 @@ jobs:
 
       - name: Build and tag Docker images using docker-compose
         run: |
-          docker-compose up -d --build
+          docker compose up -d --build
           docker tag fastapi ${{ secrets.DOCKER_USERNAME }}/fastapi:${{ github.sha }}
           docker tag db ${{ secrets.DOCKER_USERNAME }}/db:${{ github.sha }}        # Tag db
           docker tag ollama ${{ secrets.DOCKER_USERNAME }}/ollama:${{ github.sha }}  # Tag ollama

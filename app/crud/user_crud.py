@@ -1,6 +1,6 @@
 # app/crud/user.py
 from sqlalchemy.orm import Session
-from app.models.user_model import User
+from app.models.models import User
 from app.schemas.user_schema import UserCreate
 from passlib.context import CryptContext
 

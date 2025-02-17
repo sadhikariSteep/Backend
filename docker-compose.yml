@@ -14,6 +14,7 @@ services:
 
   fastapi:
     build: . #from local Dockerfile
+    image: fastapi:latest
     container_name: fastapi-container
     restart: always
     runtime: nvidia

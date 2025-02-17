@@ -1,0 +1,19 @@
+name: FastAPI CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run tests (using docker-compose)
+        run: |
+          docker-compose up -d --build # Build and start services in detached mode
+          docker-compose down # Stop and remove the services

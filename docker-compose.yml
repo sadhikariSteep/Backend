@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres #:17.0-alpine3.20
+    image: postgres:latest #:17.0-alpine3.20
     container_name: postgres-container
     restart: always
     ports:
@@ -46,7 +46,8 @@ services:
 
 
   ollama:
-    image: ollama/ollama
+    image: ollama/ollama:latest
+    
     container_name: ollama-container
     restart: always
     entrypoint: ['/bin/bash', './pull-model.sh']

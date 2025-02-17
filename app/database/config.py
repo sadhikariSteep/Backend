@@ -9,10 +9,10 @@ import os
 load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-print(DATABASE_URL)
+# print(DATABASE_URL)
 
 # The engine is the starting point for any SQLAlchemy database operations, and it manages the connection to the database.
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, pool_size=10, max_overflow=5)
 
 # This line creates a new Session factory configured with:
 #       Changes to the database will not be automatically committed 
